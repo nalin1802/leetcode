@@ -20,9 +20,26 @@ class Solution {
         return revNo;
     }
 
-    public boolean isPalindrome(int x) {    // brute force
-        if (x < 0)
+    public boolean isPalindrome(int x) {
+        // brute force approach 
+        /*
+        if (x < 0 || (x % 10 == 0 && x != 0))
             return false;
-        return x == reverse(x);
+        
+        return x == reverse(x);  
+        */ 
+
+        // optimal approach
+        if (x < 0 || (x % 10 == 0 && x != 0))
+            return false;
+
+        int revHalfNo = 0;
+
+        while (x > revHalfNo) {
+            revHalfNo = revHalfNo * 10 + x % 10;
+            x /= 10;
+        }
+
+        return x == revHalfNo || x == revHalfNo / 10;
     }
 }
